@@ -13,31 +13,7 @@
         <el-col :span="8">
           <div class="btn-group" style="margin-bottom:11px;float: right;">
             <div>
-              <el-button
-                v-if="checkPermission('/technical/delete')"
-                type="primary"
-                :disabled="multiple"
-                size="small"
-                icon="el-icon-delete"
-                @click="del(ids)"
-              >删除
-              </el-button>
-              <el-button
-                v-if="checkPermission('/technical/importData')"
-                type="primary"
-                size="small"
-                icon="el-icon-upload"
-                @click="importData(ids)"
-              >导入
-              </el-button>
-              <el-button
-                v-if="checkPermission('/technical/dumpdata')"
-                type="primary"
-                size="small"
-                icon="el-icon-download"
-                @click="dumpdata(ids)"
-              >导出
-              </el-button>
+           
             </div>
           </div>
         </el-col>
@@ -58,38 +34,46 @@
         >
           <el-table-column align="center" type="selection" width="42"/>
           <el-table-column align="center" type="" property="id" label="编号" show-overflow-tooltip width="70"/>
-          <el-table-column
-            v-for="column in RegisterField"
-            :key="column.fieldsmingcheng"
-            :prop="column.inputtype+','+column.fieldsmingcheng"
-            :label="column.viewmingcheng"
-            show-overflow-tooltip
-          >
+          <el-table-column align="center" type="" property="nickname" label="昵称" show-overflow-tooltip width="100"/>
+          <el-table-column align="center" type="" property="tel" label="手机号" show-overflow-tooltip width="120"/>
+          <el-table-column align="center" type="" property="id_cart" label="身份证" show-overflow-tooltip width="300"/>
+          <el-table-column align="center" type="" property="id_cart_img_1" label="身份证正面" show-overflow-tooltip width="200">
             <template slot-scope="scope">
-              <div v-if="scope.column.property.split(',')[0] == 'pics'">
-                <div class="demo-image__preview">
-                  <el-image
-                    class="table_list_pic"
-                    :src="scope.row[scope.column.property.split(',')[1]] || require('@/assets/no_touxiang.png')"
-                    :preview-src-list="[scope.row[scope.column.property.split(',')[1]] || require('@/assets/no_touxiang.png')]"
-                  />
-                </div>
-              </div>
-              <div v-else>
-                {{ scope.row[scope.column.property.split(',')[1]] }}
-              </div>
-            </template>
-          </el-table-column>
-          <el-table-column align="center" property="status" label="状态" show-overflow-tooltip width="">
-            <template slot-scope="scope">
-              <el-switch
-                v-model="scope.row.status"
-                :active-value="1"
-                :inactive-value="0"
-                @change="listUpdate(scope.row,'status')"
+            <div>
+              <el-image
+                v-if="scope.row.id_cart_img_1"
+                class="table_list_pic"
+                :src="scope.row.id_cart_img_1"
+                :preview-src-list="[scope.row.id_cart_img_1]"
               />
+            </div>
             </template>
           </el-table-column>
+          <el-table-column align="center" type="" property="id_cart_img_2" label="身份证反面" show-overflow-tooltip width="200">
+            <template slot-scope="scope">
+            <div>
+              <el-image
+                v-if="scope.row.id_cart_img_2"
+                class="table_list_pic"
+                :src="scope.row.id_cart_img_2"
+                :preview-src-list="[scope.row.id_cart_img_2]"
+              />
+            </div>
+            </template>
+          </el-table-column>
+          <el-table-column align="center" type="" property="disability_cert" label="残疾证" show-overflow-tooltip width="200">
+            <template slot-scope="scope">
+            <div>
+              <el-image
+                v-if="scope.row.disability_cert"
+                class="table_list_pic"
+                :src="scope.row.disability_cert"
+                :preview-src-list="[scope.row.disability_cert]"
+              />
+            </div>
+            </template>
+          </el-table-column>
+
           <el-table-column
             :fixed="$store.getters.device !== 'mobile'?'right':false"
             label="操作"
@@ -98,7 +82,7 @@
           >
             <template slot-scope="scope">
               <div v-if="scope.row.id">
-                <el-button v-if="checkPermission('/technical/auditdetail')" size="mini" type="primary"
+                <el-button v-if="checkPermission('/member/auditdetail')" size="mini" type="primary"
                            @click="audit(scope.row)"
                 ><i
                   class="el-icon-finished"
@@ -124,11 +108,6 @@
         @refesh_list="index"
       />
   
-      <!--导入-->
-      <ImportData :show.sync="dialog.importDataDialogStatus" controller="technical" size="small" @refesh_list="index"/>
-      <el-dialog title="导出进度条" :visible="dumpshow" :before-close="closedialog" width="500px">
-        <el-progress :percentage="percentage"/>
-      </el-dialog>
     </div>
   </template>
   <script>
@@ -202,13 +181,12 @@
         Object.assign(param, param2Obj(this.$route.fullPath))
         this.loading = true
   
-        this.$api.post('/diyfields/index', param).then(res => {
+        this.$api.post('/member/auditList', param).then(res => {
           this.list = res.data.data
           this.page_data.total = res.data.total
           this.loading = false
           // console.log(this.page_data);
           if (this.page_data.page == 1) {
-            this.RegisterField = res.field_data.RegisterField
             this.searchForm = [
               {
                 type: 'Input',
@@ -220,68 +198,14 @@
           }
         })
       },
-      listUpdate(row, field) {
-        if (row.id) {
-          this.$api.post('/diyfields/listUpdate', {
-            path: this.$route.path,
-            id: row.id,
-            [field]: row[field]
-          }).then(res => {
-            this.$message({
-              message: '操作成功',
-              type: 'success'
-            })
-          })
-        }
-      },
       audit(row) {
         this.opentype = 'update'
         const id = row.id ? row.id : this.ids.join(',')
-        this.$api.post('/diyfields/getInfo', {
-          path: this.$route.path,
+        this.$api.post('/member/auditDetail', {
           id: id
         }).then(res => {
           this.dialog.auditdetailDialogStatus = true
           this.auditInfo = res.data
-        })
-      },
-      add() {
-        this.opentype = 'add'
-        this.$api.post('/diyfields/getInfo', {
-          path: this.$route.path
-        }).then(res => {
-          this.dialog.updateDialogStatus = true
-          this.updateInfo = res.data
-        })
-      },
-      update(row) {
-        this.opentype = 'update'
-        const id = row.id ? row.id : this.ids.join(',')
-        this.$api.post('/diyfields/getInfo', {
-          path: this.$route.path,
-          id: id
-        }).then(res => {
-          this.dialog.updateDialogStatus = true
-          this.updateInfo = res.data
-        })
-      },
-      del(row) {
-        confirm({
-          content: '确定要操作吗'
-        }).then(() => {
-          const ids = row.id ? row.id : this.ids.join(',')
-  
-          this.$api.post('/diyfields/delete', {
-            path: this.$route.path,
-            id: ids
-          }).then(res => {
-            this.$message({
-              message: res.msg,
-              type: 'success'
-            })
-            this.index()
-          })
-        }).catch(() => {
         })
       },
       importData() {

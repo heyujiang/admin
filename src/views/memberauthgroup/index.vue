@@ -126,6 +126,7 @@
       >
         <template slot-scope="scope">
           <el-switch
+            :disabled="true"
             v-model="scope.row.is_default"
             :active-value="1"
             :inactive-value="0"
