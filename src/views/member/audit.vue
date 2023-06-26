@@ -102,7 +102,6 @@
       <!--审核-->
       <Auditdetail
         :info="auditInfo"
-        :opentype="opentype"
         :show.sync="dialog.auditdetailDialogStatus"
         size="small"
         @refesh_list="index"
@@ -113,7 +112,7 @@
   <script>
   import Search from '@/components/common/Search'
   import Pagination from '@/components/Pagination'
-  import Auditdetail from '@/views/diyfields/auditdetail.vue'
+  import Auditdetail from '@/views/member/auditdetail.vue'
   import ImportData from '@/views/diyfields/importData.vue'
   import Update from '@/views/diyfields/update.vue'
   
