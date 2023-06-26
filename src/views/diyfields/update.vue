@@ -194,7 +194,7 @@ export default {
     closeForm() {
       this.$emit('update:show', false)
       this.loading = false
-      this.mapRefresh = false
+      this.mapRefresh = false //每次打开刷新地图地图组件
       if (this.$refs['form'] !== undefined) {
         this.$refs['form'].resetFields()
       }
