@@ -109,6 +109,11 @@
                 type="primary"
                 @click="update(scope.row)"
               ><i class="el-icon-edit" />修改</el-button>
+              <el-button
+                size="mini"
+                type="primary"
+                @click="viewPosition(scope.row)"
+              ><i class="el-icon-eye" />查看位置</el-button>
             </div>
           </template>
         </el-table-column>
@@ -233,6 +238,9 @@ export default {
           ]
         }
       })
+    },
+    viewPosition(){
+        alter('查看位置')
     },
     listUpdate(row, field) {
       if (row.id) {
