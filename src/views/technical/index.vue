@@ -108,7 +108,7 @@
                 size="mini"
                 type="primary"
                 @click="update(scope.row)"
-              ><i class="el-icon-edit" />修改</el-button>
+              ><i class="el-icon-edit" />修改212121</el-button>
               <el-button
                 size="mini"
                 type="primary"
@@ -239,8 +239,15 @@ export default {
         }
       })
     },
-    viewPosition(){
-        alter('查看位置')
+    viewPosition(row) {
+      const id = row.id
+      this.$api.post('/technical/getPosition', {
+        id: id
+      }).then(res => {
+        console.log(res)
+        // this.dialog.updateDialogStatus = true
+        // this.updateInfo = res.data
+      })
     },
     listUpdate(row, field) {
       if (row.id) {

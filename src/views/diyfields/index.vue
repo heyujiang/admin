@@ -119,12 +119,20 @@
                 <i class="el-icon-finished"/>审核
               </el-button>
 
+              <el-button size="mini" v-if="controller == 'technical'"
+                         type="primary"
+                         @click="viewPosition(scope.row)"
+              >
+                <i class="el-icon-view"/>查看定位
+              </el-button>
+
               <el-button size="mini" v-if="checkPermission('/'+controller+'/update') && 'index' == action"
                          type="primary"
                          @click="update(scope.row)"
               >
                 <i class="el-icon-edit"/>修改
               </el-button>
+
             </div>
           </template>
         </el-table-column>
@@ -153,6 +161,12 @@
       @refesh_list="index"
       @update:show="dialog.updateDialogStatus"
     />
+    <Position
+      :info="technicalPos"
+      :show.sync="dialog.positionDialogStatus"
+      @update:show="dialog.positionDialogStatus"
+    >
+    </Position>
     <!--导入-->
     <ImportData :show.sync="dialog.importDataDialogStatus" controller="technical" size="small" @refesh_list="index"/>
     <el-dialog title="导出进度条" :visible="dumpshow" :before-close="closedialog" width="500px">
@@ -166,6 +180,7 @@ import Pagination from '@/components/Pagination'
 import Auditdetail from '@/views/diyfields/auditdetail.vue'
 import ImportData from '@/views/diyfields/importData.vue'
 import Update from '@/views/diyfields/update'
+import Position from '@/views/technical/position'
 import {
   confirm,
   param2Obj
@@ -179,14 +194,16 @@ export default {
     Pagination,
     Update,
     Auditdetail,
-    ImportData
+    ImportData,
+    Position
   },
   data() {
     return {
       dialog: {
         auditdetailDialogStatus: false,
         importDataDialogStatus: false,
-        updateDialogStatus: false
+        updateDialogStatus: false,
+        positionDialogStatus: false
       },
       ids: [],
       single: true,
@@ -212,13 +229,24 @@ export default {
       searchForm: [],
       searchData: {},
       action: 'index',
-      controller: ''
+      controller: '',
+      technicalPos:{}
     }
   },
   mounted() {
     this.index()
   },
   methods: {
+    viewPosition(row) {
+      const id = row.id
+      console.log(id)
+      this.$api.get('/technical/getPosition', {
+        id: id
+      }).then(res => {
+        this.dialog.positionDialogStatus = true
+        this.technicalPos = res.data
+      })
+    },
     searchgo() {
       this.page_data.page = 1
       this.index()

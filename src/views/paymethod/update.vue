@@ -23,6 +23,32 @@
             </el-form-item>
           </el-col>
         </el-row>
+        <div v-if="form.code=='hee_pay'">
+          <el-row>
+            <el-col :span="24">
+              <el-form-item label="商户编号">
+                <el-input v-model="form.settings.agent_id" auto-complete="off" clearable placeholder="请输入商户编号" />
+                <div class="help-block">汇付宝商户内码：七位整数数字</div>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row>
+            <el-col :span="24">
+              <el-form-item label="子商户编号">
+                <el-input v-model="form.settings.ref_agent_id" auto-complete="off" clearable placeholder="请输入子商户编号" />
+                <div class="help-block">大商户子户模式传参</div>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row>
+            <el-col :span="24">
+              <el-form-item label="key">
+                <el-input v-model="form.settings.key" auto-complete="off" clearable placeholder="请输入子商户编号" />
+                <div class="help-block">签名密钥</div>
+              </el-form-item>
+            </el-col>
+          </el-row>
+        </div>
         <div v-if="form.code=='wx_pay'">
           <el-row>
             <el-col :span="24">

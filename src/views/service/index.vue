@@ -108,16 +108,16 @@
           <template slot-scope="scope">
             <div v-if="scope.row.id">
               <el-button
+                size="mini"
+                type="danger"
+                @click="replaceOrder(scope.row)"
+              ><i class="el-icon-edit" />代客下单</el-button>
+              <el-button
                 v-if="checkPermission('/service/update')"
                 size="mini"
                 type="primary"
                 @click="update(scope.row)"
               ><i class="el-icon-edit" />修改</el-button>
-              <el-button
-                size="mini"
-                type="danger"
-                @click="replaceOrder(scope.row)"
-              ><i class="el-icon-edit" />代客下单</el-button>
             </div>
           </template>
         </el-table-column>
