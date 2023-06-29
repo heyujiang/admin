@@ -53,7 +53,7 @@
           </el-col>
           <el-col v-if="item.inputtype === 'coo'" :span="24">
             <el-form-item :label="item.viewmingcheng">
-              <IMap :coordinate.sync="item.fieldsvalue" :refresh="mapRefresh"></IMap>
+              <IMap :coordinate.sync="item.fieldsvalue" :address.sync="address" :isAddress="true" :refresh="mapRefresh" :canClick="true"></IMap>
             </el-form-item>
           </el-col>
           <el-col v-if="item.inputtype === 'select'" :span="24">
@@ -145,7 +145,8 @@ export default {
       loading: false,
       rules: {},
       point: {},
-      mapRefresh: false
+      mapRefresh: false,
+      address:{}
     }
   },
   watch: {
@@ -155,6 +156,35 @@ export default {
           this.areaoptions = res.data
         })
       }
+    },
+    address(val){
+      let lbs = [0,0,0]
+      console.log(val)
+      try{
+        this.areaoptions.forEach(province=>{
+          lbs[0] = province.value
+          province.children.forEach(city=>{
+            lbs[1] = city.value
+            city.children.forEach(district=>{
+              if(district.label == val.district) {
+                lbs[2] = district.value
+                throw new Error()
+              }
+            })
+          })
+        })
+      }catch(e){
+        console.log(lbs)
+      }
+
+      this.form.fields.forEach(item=>{
+          if(item.fieldsmingcheng == 'province_id') {
+            item.fieldsvalue = lbs
+          }
+          if(item.fieldsmingcheng == 'region_name') {
+              item.fieldsvalue =  val.street
+          }
+      })
     }
   },
   methods: {

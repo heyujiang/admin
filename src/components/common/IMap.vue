@@ -8,7 +8,6 @@
     </baidu-map>
     <div style="height: 20px;line-height: 20px;">经度：{{markerPoint.lng}}；纬度：{{markerPoint.lat}}</div>
   </div>
-  
 </template>
 <script>
 export default {
@@ -23,6 +22,20 @@ export default {
     refresh: {
       type: Boolean,
       default: false
+    },
+    address: {
+      type: Object,
+      default: function() {
+        return {}
+      }
+    },
+    isAddress: {
+      type: Boolean,
+      default: false
+    },
+    canClick: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -32,11 +45,15 @@ export default {
       zoom: 16,
       showMarker: true,
       showPoint: false,
-      pointPoint:{}
+      pointPoint:{},
+      BMap:null,
+      map:null
     };
   },
   methods: {
     ready ({BMap, map}) {
+      this.BMAP = BMap
+      this.map = map
       this.showPoint = false;
       console.log(this.coordinate)
       if (this.coordinate) {
@@ -49,12 +66,20 @@ export default {
       this.zoom = 16
     },
     click ({type, target, point, pixel, overlay}){
-      console.log(point)
-      if (!this.showMarker) {
-        this.showMarker = true
-      }
-      this.markerPoint = point
-      this.$emit('update:coordinate',point)
+      if(this.canClick){
+        if(this.isAddress) {
+          new this.BMAP.Geocoder().getLocation(point,res=>{
+            console.log(res.addressComponents)
+            this.$emit('update:address',res.addressComponents)
+          })
+        }
+        console.log(point)
+        if (!this.showMarker) {
+          this.showMarker = true
+        }
+        this.markerPoint = point
+        this.$emit('update:coordinate',point)
+        }
     }
   }
 };

@@ -13,6 +13,9 @@
         <div slot="title">
             <IMap :coordinate.sync="position" :refresh="mapRefresh"></IMap>
         </div>
+        <div>
+            <el-cascader v-model="info.area" expand-trigger="hover" :change-on-select="true" :options="areaoptions" disabled/>
+        </div>
         <div slot="footer" class="dialog-footer">
           <el-button :loading="loading" type="primary" @click="closeForm">
             <span v-if="!loading">确 定</span>
@@ -45,7 +48,17 @@
     data() {
       return {
         position:{lng:0,lat:0},
-        mapRefresh: false
+        mapRefresh: false,
+        areaoptions:[]
+      }
+    },
+    watch: {
+      show(val) {
+        if (val) {
+          this.$api.post('/Area/getpcTree').then(res => {
+            this.areaoptions = res.data
+          })
+        }
       }
     },
     methods: {
