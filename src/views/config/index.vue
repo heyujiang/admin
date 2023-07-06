@@ -293,6 +293,40 @@
 						</el-col>
 					</el-row>
 				</el-tab-pane>
+				<el-tab-pane style="padding-top:10px" label="腾讯云" name="腾讯云">
+					<el-row>
+						<el-col :span="24">
+							<el-form-item label="腾讯云appid" prop="tencent_cloud_appid">
+								<el-input v-model="form.tencent_cloud_appid" auto-complete="off" clearable
+									placeholder="请输入腾讯云appid" />
+							</el-form-item>
+						</el-col>
+					</el-row>
+					<el-row>
+						<el-col :span="24">
+							<el-form-item label="腾讯云secretId" prop="tencent_cloud_secretId">
+								<el-input v-model="form.tencent_cloud_secretId" auto-complete="off" clearable
+									placeholder="请输入腾讯云secretId" />
+							</el-form-item>
+						</el-col>
+					</el-row>
+					<el-row>
+						<el-col :span="24">
+							<el-form-item label="腾讯云secretKey" prop="tencent_cloud_secretKey">
+								<el-input v-model="form.tencent_cloud_secretKey" auto-complete="off" clearable
+									placeholder="请输入腾讯云secretKey" />
+							</el-form-item>
+						</el-col>
+					</el-row>
+					<el-row>
+						<el-col :span="24">
+							<el-form-item label="师傅电话通知模版id" prop="phone_notify_template_id">
+								<el-input v-model="form.phone_notify_template_id" auto-complete="off" clearable
+									placeholder="请输入师傅电话通知模版id" />
+							</el-form-item>
+						</el-col>
+					</el-row>
+				</el-tab-pane>
 			</el-tabs>
 			<el-form-item>
 				<el-button size="small" type="primary" @click="submit">保存设置</el-button>
