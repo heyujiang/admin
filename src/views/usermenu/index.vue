@@ -1,5 +1,4 @@
 <template>
-  <!-- sds -->
   <div>
     <el-row class="app-toptool" type="flex">
       <el-col :span="16">
@@ -58,6 +57,13 @@
       />
       <el-table-column
         align="left"
+        property="mo"
+        label="模块"
+        show-overflow-tooltip
+        width=""
+      />
+      <el-table-column
+        align="left"
         property="title"
         label="名称"
         show-overflow-tooltip
@@ -72,11 +78,12 @@
       />
       <el-table-column
         align="left"
-        property="params"
-        label="参数"
+        property="plugin"
+        label="插件"
         show-overflow-tooltip
         width=""
       />
+
       <el-table-column align="center" property="icon" label="图标" show-overflow-tooltip width="90">
         <template slot-scope="scope">
           <div class="demo-image__preview">
@@ -89,32 +96,6 @@
           </div>
         </template>
       </el-table-column>
-      <el-table-column align="center" property="iconactive" label="选中图标" show-overflow-tooltip width="90">
-        <template slot-scope="scope">
-          <div class="demo-image__preview">
-            <el-image
-              v-if="scope.row.iconactive"
-              class="table_list_pic"
-              :src="scope.row.iconactive"
-              :preview-src-list="[scope.row.iconactive]"
-            />
-          </div>
-        </template>
-      </el-table-column>
-      <el-table-column
-        align="left"
-        property="hump"
-        label="凸起"
-        show-overflow-tooltip
-        width="100"
-      />
-      <el-table-column
-        align="left"
-        property="is_index"
-        label="是否首页"
-        show-overflow-tooltip
-        width="100"
-      />
       <el-table-column
         align="center"
         property="status"
@@ -174,15 +155,15 @@
 
 <script>
 import Search from '@/components/common/Search'
-import Update from '@/views/bottommenu/update.vue'
-import waves from '@/directive/waves' // waves directive
+import Update from '@/views/usermenu/update.vue'
+// import waves from '@/directive/waves' // waves directive
 import {
   confirm,
   param2Obj
 } from '@/utils/common'
 export default {
-  name: 'Bottommenu',
-  directives: { waves },
+  name: 'Usermenu',
+  // directives: { waves },
   components: {
     Search,
     Update
@@ -214,7 +195,7 @@ export default {
       Object.assign(param, this.searchData)
       Object.assign(param, param2Obj(this.$route.fullPath))
       this.loading = true
-      this.$api.post('/bottommenu/index', param).then(res => {
+      this.$api.post('/usermenu/index', param).then(res => {
         this.list = res.data
         this.loading = false
 
@@ -223,13 +204,32 @@ export default {
           label: '关键词',
           prop: 'keyword',
           width: '230px'
+        },
+        {
+          type: 'Select',
+          label: '模块',
+          prop: 'mo',
+          width: '230px',
+          data:[{
+            'key':'订单中心',
+            'val':'order'
+          },{
+            'key':'所有功能',
+            'val':'function'
+          },{
+            'key':'常用工具',
+            'val':'tool'
+          },{
+            'key':'后台入口',
+            'val':'admin'
+          }]
         }
         ]
       })
     },
     listUpdate(row, field) {
       if (row.id) {
-        this.$api.post('/bottommenu/listUpdate', {
+        this.$api.post('/usermenu/listUpdate', {
           id: row.id,
           [field]: row[field]
         }).then(res => {
@@ -247,8 +247,9 @@ export default {
     update(row) {
       this.opentype = 'update'
       const id = row.id ? row.id : this.ids.join(',')
-      this.$api.post('/bottommenu/getInfo', {
-        id: id
+      this.$api.post('/usermenu/getInfo', {
+        id: id,
+        path: this.$route.path
       }).then(res => {
         this.dialog.updateDialogStatus = true
         this.updateInfo = res.data
@@ -259,7 +260,7 @@ export default {
         content: '确定要操作吗'
       }).then(() => {
         const ids = row.id ? row.id : this.ids.join(',')
-        this.$api.post('/bottommenu/delete', {
+        this.$api.post('/usermenu/delete', {
           id: ids
         }).then(res => {
           this.$message({

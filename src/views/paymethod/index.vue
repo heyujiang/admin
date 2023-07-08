@@ -39,7 +39,7 @@
           show-overflow-tooltip
           width=""
         />
-        
+
         <el-table-column
           align="center"
           property="status"

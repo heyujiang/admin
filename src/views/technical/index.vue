@@ -109,11 +109,6 @@
                 type="primary"
                 @click="update(scope.row)"
               ><i class="el-icon-edit" />修改212121</el-button>
-              <el-button
-                size="mini"
-                type="primary"
-                @click="viewPosition(scope.row)"
-              ><i class="el-icon-eye" />查看位置</el-button>
             </div>
           </template>
         </el-table-column>
@@ -237,16 +232,6 @@ export default {
           }
           ]
         }
-      })
-    },
-    viewPosition(row) {
-      const id = row.id
-      this.$api.post('/technical/getPosition', {
-        id: id
-      }).then(res => {
-        console.log(res)
-        // this.dialog.updateDialogStatus = true
-        // this.updateInfo = res.data
       })
     },
     listUpdate(row, field) {
