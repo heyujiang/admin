@@ -34,6 +34,13 @@
         </el-row>
         <el-row>
           <el-col :span="24">
+            <el-form-item label="平台管理员" prop="is_admin">
+              <el-switch v-model="form.is_admin" :active-value="1" :inactive-value="0" />
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="24">
             <el-form-item label="备注" prop="description">
               <el-input v-model="form.description" auto-complete="off" clearable placeholder="请输入备注" />
             </el-form-item>

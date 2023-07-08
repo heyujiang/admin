@@ -73,7 +73,7 @@ const shop = {
 }
 
 const pageData = [{
-  name: '幻灯片组',
+  name: '幻灯片',
   pic: 'banner.png',
   type: 'banner',
   base: {
@@ -115,7 +115,7 @@ const pageData = [{
    * name 导航名称 ｜ type navBar 导航标识 ｜ base 基础样式 ｜ list 导航列表 | max 最多添加15｜
    */
 {
-  name: '导航组',
+  name: '导航',
   pic: 'navBar.png',
   type: 'navBar',
   base: {
@@ -131,7 +131,7 @@ const pageData = [{
    * name 名称 ｜ type goods 标识 ｜ base 基础样式 ｜ title 标题 ｜ list 商品列表 | max 最多添加4｜
    */
 {
-  name: '商品组',
+  name: '商品',
   pic: 'goods.png',
   type: 'goods',
   title: { title: { prompt: '模块标题', txt: '商品模块标题', ...text }, more: { prompt: '更多文字', txt: '更多', ...text }, link: link },
@@ -164,7 +164,7 @@ const pageData = [{
    * name 名称 ｜ type goods 标识 ｜ base 基础样式 ｜ title 标题 ｜ list 商品列表 | max 最多添加4｜
    */
 {
-  name: '拼团组',
+  name: '拼团',
   pic: 'tuan.png',
   type: 'tuan',
   title: { title: { prompt: '模块标题', txt: '超值拼团', ...text }, more: { prompt: '更多文字', txt: '更多', ...text }},
@@ -197,7 +197,7 @@ const pageData = [{
    * name 名称 ｜ type goods 标识 ｜ base 基础样式 ｜ title 标题 ｜ list 商品列表 | max 最多添加4｜
    */
 {
-  name: '秒杀组',
+  name: '秒杀',
   pic: 'miaosha.png',
   type: 'miaosha',
   title: { title: { prompt: '模块标题', txt: '超值拼团', ...text }, more: { prompt: '更多文字', txt: '更多', ...text }},
@@ -230,7 +230,7 @@ const pageData = [{
    * name 名称 ｜ type technical 标识 ｜ base 基础样式 ｜ title 标题 ｜ list 列表 | max 最多添加4｜
    */
 {
-  name: '师傅组',
+  name: '师傅',
   pic: 'technical.png',
   type: 'technical',
   v3: 1,
@@ -261,7 +261,7 @@ const pageData = [{
    * name 名称 ｜ type tuwen 标识 ｜ base 基础样式 ｜ title 标题 ｜ list 列表 | max 最多添加6｜
    */
 {
-  name: '优惠券组',
+  name: '优惠券',
   pic: 'coupon.png',
   type: 'coupon',
   base: {
@@ -302,7 +302,7 @@ const pageData = [{
    * name 名称 ｜ type duo 标识 ｜ base 基础样式 ｜ title 标题 ｜ list 列表 | max 最多添加12｜ title  t标题 m更多 link连接
    */
 {
-  name: '多图组',
+  name: '多图',
   pic: 'duo.png',
   type: 'duo',
   base: {
@@ -319,7 +319,7 @@ const pageData = [{
    * name 名称 ｜ type tuwen 标识 ｜ base 基础样式 ｜ title 标题 ｜ list 列表 | max 最多添加6｜
    */
 {
-  name: '单图组',
+  name: '单图',
   pic: 'imageSingle.png',
   type: 'imageSingle',
   base: {
@@ -335,7 +335,7 @@ const pageData = [{
    * name 名称 ｜ type tuwen 标识 ｜ base 基础样式 ｜ title 标题 ｜ list 列表 | max 最多添加6｜
    */
 {
-  name: '视频组',
+  name: '视频',
   pic: 'video.png',
   type: 'video',
   videoUrl: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400',
@@ -351,7 +351,7 @@ const pageData = [{
    * name 名称 ｜ type tuwen 标识 ｜ base 基础样式 ｜ title 标题 ｜ list 列表 | max 最多添加6｜
    */
 {
-  name: '公告组',
+  name: '公告',
   pic: 'notice.png',
   type: 'notice',
   base: {
@@ -371,7 +371,7 @@ const pageData = [{
    * name 名称 ｜ type tuwen 标识 ｜ base 基础样式 ｜ title 标题 ｜ list 列表 | max 最多添加6｜
    */
 {
-  name: '图文组',
+  name: '图文',
   pic: 'tuwen.png',
   type: 'tuwen',
   base: {
