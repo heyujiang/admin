@@ -53,6 +53,7 @@ const state = {
   username: '',
   role_id: '',
   routes: [],
+  sonRoutes: [],
   addRoutes: {}
 }
 
@@ -82,11 +83,18 @@ const mutations = {
   SET_ROUTES: (state, routes) => {
     state.addRoutes = routes
     state.routes = constantRoutes.concat(routes)
-  }
-
+  },
+  SET_SONROUTES: (state, routes) => {
+    state.sonRoutes = routes
+  },
 }
 
 const actions = {
+  setSonRoute({ commit }, route) {
+    return new Promise((resolve, reject) => {
+      commit('SET_SONROUTES', route)
+    })
+  },
   login({
     commit
   }, userInfo) {
@@ -143,7 +151,9 @@ const actions = {
         const accessedRoutes = asyncRoutes || []
 
         data.menu = accessedRoutes
+        console.log(accessedRoutes)
         commit('SET_ROUTES', accessedRoutes)
+        commit('SET_SONROUTES',[])
         commit('SET_ROLES', roles)
         commit('SET_AVATAR', avatar)
         commit('SET_ACTIONS', response.actions)

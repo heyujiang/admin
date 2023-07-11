@@ -1,0 +1,126 @@
+#app {
+    .main-container {
+      min-height: 100%;
+      transition: margin-left .28s;
+      margin-left: $sideBarWidth;
+      position: relative;
+  
+      .main-container {
+        .fixed-header {
+          display: none;
+        }
+  
+        .fixed-header + .app-main {
+          padding-top: 0px;
+        }
+  
+        margin-left: 0;
+      }
+    }
+  
+    .topbar-container {
+      background-color: $menuBg;
+      font-size: 0px;
+      z-index: 1001;
+      overflow-x: scroll;
+      white-space: nowrap;
+      &::-webkit-scrollbar{
+        display: none;
+      }
+
+      .el-menu{
+        display: inline-block;
+        border: none;
+      }
+
+      a {
+        // display: inline-block;
+        overflow: hidden;
+      }
+
+      .svg-icon {
+        margin-right: 16px;
+      }
+
+      .sub-el-icon {
+        margin-right: 12px;
+        margin-left: -2px;
+      }
+
+      // menu hover
+      .submenu-title-noDropdown,
+      .el-submenu__title {
+        &:hover {
+          background-color: $menuHover !important;
+        }
+      }
+  
+      .is-active > .el-submenu__title {
+        color: $subMenuActiveText !important;
+      }
+  
+      & .nest-menu .el-submenu > .el-submenu__title,
+      & .el-submenu .el-menu-item {
+        // min-width: $sideBarWidth !important;
+        background-color: $subMenuBg !important;
+  
+        &:hover {
+          background-color: $subMenuHover !important;
+        }
+      }
+    }
+  
+  
+    .el-menu--collapse .el-menu .el-submenu {
+    //   min-width: $sideBarWidth !important;
+    }
+
+    .withoutAnimation {
+  
+      .main-container,
+      .sidebar-container {
+        transition: none;
+      }
+    }
+  }
+  
+
+  .el-menu--horizontal {
+    & > .el-menu {
+      .svg-icon {
+        margin-right: 16px;
+      }
+  
+      .sub-el-icon {
+        margin-right: 12px;
+        margin-left: -2px;
+      }
+    }
+  
+    .nest-menu .el-submenu > .el-submenu__title,
+    .el-menu-item {
+      &:hover {
+        // you can use $subMenuHover
+        background-color: $menuHover !important;
+      }
+    }
+  
+    // the scroll bar appears when the subMenu is too long
+    > .el-menu--popup {
+      max-height: 100vh;
+      overflow-y: auto;
+  
+      &::-webkit-scrollbar-track-piece {
+        background: #d3dce6;
+      }
+  
+      &::-webkit-scrollbar {
+        width: 6px;
+      }
+  
+      &::-webkit-scrollbar-thumb {
+        background: #99a9bf;
+        border-radius: 20px;
+      }
+    }
+  }

@@ -116,7 +116,7 @@
       margin-left: 54px;
     }
 
-    .submenu-title-noDropdown {
+    .sidebar-container .submenu-title-noDropdown {
       padding: 0 !important;
       position: relative;
 
@@ -171,6 +171,9 @@
   .el-menu--collapse .el-menu .el-submenu {
     min-width: $sideBarWidth !important;
   }
+
+  
+
 
   // mobile responsive
   .mobile {

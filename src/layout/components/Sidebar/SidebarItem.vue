@@ -5,11 +5,11 @@
       v-if="hasOneShowingChild(item.children,item) && (!onlyOneChild.children||onlyOneChild.noShowingChildren)&&!item.alwaysShow"
     >
       <app-link v-if="onlyOneChild.meta" :to="resolvePath(onlyOneChild.path)">
-        <el-menu-item :index="resolvePath(onlyOneChild.path)" class="submenu-title-noDropdown">
+        <el-menu-item :index="item.path" class="submenu-title-noDropdown">
           <item v-if="onlyOneChild.path == 'dashboard'" :icon="onlyOneChild.meta.icon||(item.meta&&item.meta.icon)"
                 :title="onlyOneChild.meta.title"
           />
-          <item v-else :title="onlyOneChild.meta.title"/>
+          <item v-else :icon="item.meta && item.meta.icon" :title="onlyOneChild.meta.title"/>
         </el-menu-item>
       </app-link>
     </template>
@@ -69,6 +69,7 @@ export default {
   },
   methods: {
     hasOneShowingChild(children = [], parent) {
+      console.log(children,parent)
       const showingChildren = children.filter(item => {
         if (item.hidden) {
           return false

@@ -12,7 +12,7 @@
         :collapse-transition="false"
         mode="vertical"
       >
-        <sidebar-item v-for="(route,index) in permission_routes" :key="route.path" :item="route" :index="index"
+        <sidebar-item v-for="(route,index) in son_permission_routes" :key="route.path" :item="route" :index="index"
                       :base-path="route.path"
         />
       </el-menu>
@@ -31,16 +31,17 @@ export default {
   computed: {
     ...mapGetters([
       'permission_routes',
+      'son_permission_routes',
       'sidebar'
     ]),
     activeMenu() {
       const route = this.$route
       const { meta, path } = route
       // if set path, the sidebar will highlight the path you set
-      console.log(meta)
-      if (meta.activeMenu) {
-        return meta.activeMenu
-      }
+      console.log(meta,path)
+      // if (meta.activeMenu) {
+      //   return meta.activeMenu
+      // }
       return path
     },
     showLogo() {

@@ -4,6 +4,7 @@
     <sidebar class="sidebar-container"/>
     <div :class="{hasTagsView:needTagsView}" class="main-container">
       <div :class="{'fixed-header':fixedHeader}">
+        <topbar class="topbar-container"/>
         <navbar/>
         <tags-view v-if="needTagsView"/>
       </div>
@@ -24,7 +25,8 @@ import {
   Navbar,
   Settings,
   Sidebar,
-  TagsView
+  TagsView,
+  Topbar
 } from './components'
 import ResizeMixin from './mixin/ResizeHandler'
 import {
@@ -40,7 +42,8 @@ export default {
     RightPanel,
     Settings,
     Sidebar,
-    TagsView
+    TagsView,
+    Topbar
   },
   mixins: [ResizeMixin],
   mounted() {
