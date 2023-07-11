@@ -41,6 +41,12 @@
             </td>
           </tr>
           <tr>
+            <td class="title" width="100">收款方式：</td>
+            <td>
+              {{ form.mode }}
+            </td>
+          </tr>
+          <tr>
             <td class="title" width="100">收款帐号：</td>
             <td>
               {{ form.MemberBankcard }}

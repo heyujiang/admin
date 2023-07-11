@@ -39,6 +39,7 @@
         <el-table-column align="left" property="actual_poundage" label="手续费" show-overflow-tooltip width="" />
         <el-table-column align="left" property="actual_amounts" label="实收金额" show-overflow-tooltip width="" />
         <el-table-column align="left" property="username" label="申请人" show-overflow-tooltip width="" />
+        <el-table-column align="left" property="mode" label="收款方式" show-overflow-tooltip width="" />
         <el-table-column align="left" property="MemberBankcard" label="收款账号" show-overflow-tooltip width="" />
         <el-table-column align="left" property="create_time" label="申请时间" show-overflow-tooltip width="" />
         <el-table-column align="center" property="status" label="结算" show-overflow-tooltip width="">
