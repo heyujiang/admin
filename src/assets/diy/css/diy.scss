@@ -37,11 +37,11 @@ $color: #29c8a1;
 
 .appdiy-module-container {
   width: 375px;
-  height: 667px;
+  height: calc(100% - 120px);
   border: 1px solid #eee;
   display: flex;
   flex-direction: column;
-  top: 70px;
+  top: 120px;
   left: 850px;
   position: fixed;
   background: #fff;

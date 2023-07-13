@@ -137,17 +137,19 @@ export default {
     overflow: hidden;
     position: fixed;
     height: 100%;
-    margin-top: -2px;
+    // margin-top: 10px;
 
     .pagelist {
       border-top: 1px solid #eee;
       padding-top: 13px;
       width: 250px;
+      box-sizing: border-box;
+      height: calc(100% - 100px);
     }
 
     .leftcon {
       flex: 1;
-      height: 100%;
+      height: calc(100% - 100px);
       background: #fff;
       overflow-y: auto;
       position: relative;

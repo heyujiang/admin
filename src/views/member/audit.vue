@@ -35,7 +35,7 @@
           <el-table-column align="center" type="selection" width="42"/>
           <el-table-column align="center" type="" property="id" label="编号" show-overflow-tooltip width="70"/>
           <el-table-column align="center" type="" property="nickname" label="昵称" show-overflow-tooltip width="100"/>
-          <el-table-column align="center" type="" property="tel" label="手机号" show-overflow-tooltip width="120"/>
+          <el-table-column align="center" type="" property="telephone" label="手机号" show-overflow-tooltip width="120"/>
           <el-table-column align="center" type="" property="id_cart" label="身份证" show-overflow-tooltip width="300"/>
           <el-table-column align="center" type="" property="id_cart_img_1" label="身份证正面" show-overflow-tooltip width="200">
             <template slot-scope="scope">

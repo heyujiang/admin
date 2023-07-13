@@ -32,7 +32,7 @@
             <tr>
               <td class="title" width="100">手机号：</td>
               <td>
-                {{ applyInfo.tel }}
+                {{ applyInfo.telephone }}
               </td>
             </tr>
             <tr>
