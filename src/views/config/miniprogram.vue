@@ -32,6 +32,24 @@
             </el-col>
           </el-row>
         </el-tab-pane>
+
+         <el-tab-pane style="padding-top:10px" label="抖音小程序配置" name="抖音小程序配置">
+          <el-row>
+            <el-col :span="24">
+              <el-form-item label="AppId">
+                <el-input v-model="form.ttapp_id" auto-complete="off" clearable placeholder="请输入AppId" />
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row>
+            <el-col :span="24">
+              <el-form-item label="Secret">
+                <el-input v-model="form.ttsecret" auto-complete="off" clearable placeholder="请输入Secret" />
+              </el-form-item>
+            </el-col>
+          </el-row>
+        </el-tab-pane>
+
         <!-- <el-tab-pane style="padding-top:10px" label="师傅端小程序配置" name="师傅端小程序配置"> -->
           <!-- <el-row>
             <el-col :span="24">
